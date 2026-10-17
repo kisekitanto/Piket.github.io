@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piket Kelas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- STATUS A: LAYAR LOGIN -->
+<main id="login">
+  <div class="board"><h1>Piket Kelas</h1><p>Masuk untuk menyusun jadwal piket besok</p></div>
+  <form id="loginForm" class="paper" novalidate>
+    <label>Username<input id="un" autocomplete="username" autocapitalize="none"></label>
+    <label>Password<input id="pw" type="password" autocomplete="current-password"></label>
+    <p id="loginMsg" class="msg" role="alert"></p>
+    <button id="btnLogin" class="btn primary big" type="submit">Login</button>
+  </form>
+</main>
+
+<!-- MENU UTAMA -->
+<div id="app" hidden>
+  <header class="board bar">
+    <strong>Piket Kelas</strong>
+    <div class="user"><span id="userName"></span><button id="btnSet" class="btn gray" type="button">⚙️ Pengaturan</button><button id="btnKeluar" class="btn gray" type="button">Keluar</button></div>
+  </header>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar">
+      <h3>📅 Daftar Piket Minggu Ini</h3>
+      <div id="daftarHari"></div>
+    </aside>
+    <main class="wrap">
+    <h2 id="judul"></h2>
+
+    <div id="kadaluarsa" class="note warn" hidden>
+      <p id="kadaluarsaTeks"></p>
+      <div class="row">
+        <button id="btnKosong" class="btn" type="button">Kosongkan daftar</button>
+        <button id="btnPakai" class="btn primary" type="button">Pakai untuk besok</button>
+      </div>
+    </div>
+    <p id="belum"></p>
+    <div id="tabel"></div>
+    <button id="btnBuat" class="btn primary big" type="button">Buat Pengumuman Semua</button>
+    <p id="buatMsg" class="msg" role="alert"></p>
+
+    <section id="preview" class="panel" hidden>
+      <h3>Pratinjau pengumuman</h3>
+      <div id="basi" class="note warn" hidden>Daftar berubah. Klik Buat Pengumuman Semua lagi.</div>
+      <label>Catatan tambahan (opsional)<textarea id="catatan" placeholder="Tulis catatan di sini... (mis: besok bawa kain lap sendiri, dll)" rows="3"></textarea></label>
+      <pre id="teks"></pre>
+      <p id="copyMsg" class="msg" role="alert"></p>
+      <button id="btnCopy" class="btn primary big" type="button">Copy Semua Teks</button>
+      <button id="btnWA" class="btn wa big" type="button">Kirim ke WhatsApp</button>
+      <div id="tanya" class="note" hidden>
+        <p>Kosongkan daftar untuk jadwal hari berikutnya?</p>
+        <div class="row">
+          <button id="btnYa" class="btn danger" type="button">Ya, kosongkan</button>
+          <button id="btnTidak" class="btn" type="button">Tidak, simpan dulu</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="guruView" hidden>
+  <main class="wrap">
+    <h2>Panel Guru — Daftar Nama Anggota</h2>
+    <p class="hint">Ubah nama di bawah, lalu klik "Unduh names.json" dan ganti file <b>names.json</b> di tempat web ini disimpan (satu folder dengan index.html). Ketua akan melihat nama baru setelah halaman dibuka ulang.</p>
+    <div id="guruDaftar"></div>
+    <div class="row"><button id="btnUnduh" class="btn primary big" type="button">Unduh names.json</button></div>
+    <p id="guruMsg" class="msg" role="alert"></p>
+    <section class="panel"><h3>Riwayat perubahan (di perangkat ini)</h3><div id="riwayat"></div></section>
+  </main>
+</div>
+</div>
+
+<dialog id="dlg">
+  <div class="dhead"><h3>Pengaturan</h3><button id="dTutup" class="btn" type="button">Tutup</button></div>
+  <h4>Tampilan</h4>
+  <label>Tema<select id="optTema"><option value="biru">Biru (bawaan)</option><option value="hijau">Hijau papan tulis</option><option value="gelap">Gelap</option><option value="kontras">Kontras tinggi</option></select></label>
+  <label>Ukuran huruf<select id="optHuruf"><option value="normal">Normal</option><option value="besar">Besar</option><option value="xbesar">Sangat besar</option></select></label>
+  <section id="secReq">
+    <h4>Minta ubah nama anggota</h4>
+    <p class="hint">Nama anggota hanya bisa diubah oleh guru. Tulis permintaanmu, lalu kirim ke guru lewat WhatsApp.</p>
+    <label>Permintaan<textarea id="reqTeks" rows="3" placeholder="mis: Tambah Dina ke daftar hari ini, hapus Fara"></textarea></label>
+    <button id="btnReq" class="btn wa" type="button">Kirim ke Guru via WhatsApp</button>
+    <p id="reqMsg" class="msg" role="alert"></p>
+  </section>
+  <h4>Akun login</h4>
+  <label>Username<input id="akU" autocomplete="off" maxlength="20"></label>
+  <label>Password baru (kosongkan kalau tidak diganti)<input id="akP" type="password" autocomplete="new-password"></label>
+  <label>Password saat ini<input id="akLama" type="password" autocomplete="current-password"></label>
+  <p class="hint">Perubahan nama dan akun tersimpan di browser perangkat ini saja.</p>
+  <button id="btnSimpanAk" class="btn primary" type="button">Simpan akun</button>
+  <p id="akMsg" class="msg" role="alert"></p>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
